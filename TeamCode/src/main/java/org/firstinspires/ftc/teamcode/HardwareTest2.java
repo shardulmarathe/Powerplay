@@ -31,8 +31,10 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -58,14 +60,14 @@ public class HardwareTest2
     public DcMotor  rightfront = null;
     public DcMotor  leftback = null;
     public DcMotor  rightback = null;
-//    public DcMotor  Lift = null;
+    public DcMotor  Lift = null;
 ////    public DcMotor  wobblegoalarm = null;
 ////    public DcMotor  shooterone = null;
 ////    public DcMotor  Wheelintake = null;
 ////    public Servo Launcher = null;
 ////    public Servo rampservo = null;
-//    public Servo grabber = null;
-//    public Servo grabber2 = null;
+    public Servo grabber = null;
+    public CRServo grabber2 = null;
 
 
 
@@ -96,14 +98,14 @@ public class HardwareTest2
         leftback = this.hwMap.get(DcMotor.class, "leftback");
         rightfront = this.hwMap.get(DcMotor.class, "rightfront");
         rightback = this.hwMap.get(DcMotor.class, "rightback");
-//        Lift = this.hwMap.get(DcMotor.class, "Lift");
+        Lift = this.hwMap.get(DcMotor.class, "Lift");
 ////        wobblegoalarm=this.hwMap.get(DcMotor.class,"wobblegoalarm");
 ////        shooterone=this.hwMap.get(DcMotor.class,"shooterone");
 ////        Wheelintake=this.hwMap.get(DcMotor.class,"wheeelintake");
 ////        Launcher = this.hwMap.get(Servo.class,"Launcher");
 ////        rampservo = this.hwMap.get(Servo.class,"rampservo");
-//        grabber = this.hwMap.get(Servo.class,"grabber");
-//        grabber2 = this.hwMap.get(Servo.class,"grabber2");
+        grabber = this.hwMap.get(Servo.class,"grabber");
+        grabber2 = this.hwMap.get(CRServo.class,"grabber2");
 
 
 
@@ -115,14 +117,15 @@ public class HardwareTest2
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.FORWARD);
         rightback.setDirection(DcMotor.Direction.REVERSE);
-//        Lift.setDirection(DcMotor.Direction.FORWARD);
+
+        Lift.setDirection(DcMotor.Direction.FORWARD);
 //        wobblegoalarm.setDirection(DcMotor.Direction.FORWARD);
 //        shooterone.setDirection(DcMotor.Direction.FORWARD);
 //        Wheelintake.setDirection(DcMotor.Direction.REVERSE);
 //        Launcher.setPosition(0.1);
-//        rampservo.setPosition(0.0);
-//        grabber.setPosition(1.0);
-//        grabber2.setPosition(1.0);
+        grabber.setPosition(0.0);
+
+
 
         //extra.setPosition(1.0);
 
@@ -140,7 +143,7 @@ public class HardwareTest2
         rightfront.setPower(0.0);
         leftback.setPower(0.0);
         rightback.setPower(0.0);
-//        Lift.setPower(0.0);
+        Lift.setPower(0.0);
 //        wobblegoalarm.setPower(0.0);
 //        shooterone.setPower(0.0);
 //        Wheelintake.setPower(0.0);
