@@ -123,7 +123,7 @@ public class HardwareTest2
 //        shooterone.setDirection(DcMotor.Direction.FORWARD);
 //        Wheelintake.setDirection(DcMotor.Direction.REVERSE);
 //        Launcher.setPosition(0.1);
-        grabber.setPosition(0.0);
+        grabber.setPosition(0.2);
 
 
 
