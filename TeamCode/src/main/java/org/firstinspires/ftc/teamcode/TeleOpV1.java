@@ -139,16 +139,16 @@ public class TeleOpV1 extends LinearOpMode {
             robot.rightfront.setPower(rightFrontPower);
             robot.leftback.setPower(leftBackPower);
             robot.rightback.setPower(rightBackPower);
-            robot.Lift.setPower(-gamepad2.left_stick_y/1.5);
-            if(gamepad2.y){
-                robot.grabber.setPosition(0.0);
-                robot.grabber2.setPosition(0.0);
-
-            }else{
-                robot.grabber.setPosition(1.0);
-                robot.grabber2.setPosition(1.0);
-
-            }
+//            robot.Lift.setPower(-gamepad2.left_stick_y/1.5);
+//            if(gamepad2.y){
+//                robot.grabber.setPosition(0.0);
+//                robot.grabber2.setPosition(0.0);
+//
+//            }else{
+//                robot.grabber.setPosition(1.0);
+//                robot.grabber2.setPosition(1.0);
+//
+//            }
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
