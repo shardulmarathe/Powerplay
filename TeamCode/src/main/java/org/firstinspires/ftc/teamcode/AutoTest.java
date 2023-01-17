@@ -117,7 +117,7 @@ public class AutoTest extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED3,4,4,4,4,5.0);
+        encoderDrive(DRIVE_SPEED3,10,10,10,10,5.0);
         sleep(8000);
         encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
         sleep(8000);
@@ -137,6 +137,7 @@ public class AutoTest extends LinearOpMode {
 //        encoderDrive(DRIVE_SPEED4,98,-98,-98,98,10.0);
 //        encoderDrive(DRIVE_SPEED3,15,15,15,15,5.0);
 //        encoderDrive(DRIVE_SPEED,-27,-27,-27,-27,5.0);
+        // hello
 
 
 
@@ -233,6 +234,7 @@ public class AutoTest extends LinearOpMode {
 
 
             //  sleep(250);   // optional pause after each move
+            //hello
         }
 
     }
