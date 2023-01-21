@@ -81,6 +81,8 @@ public class TeleOpV1 extends LinearOpMode {
         robot.rightfront.setDirection(DcMotor.Direction.REVERSE);
         robot.leftback.setDirection(DcMotor.Direction.FORWARD);
         robot.rightback.setDirection(DcMotor.Direction.REVERSE);
+        robot.Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
 
 
@@ -139,7 +141,16 @@ public class TeleOpV1 extends LinearOpMode {
             robot.rightfront.setPower(rightFrontPower);
             robot.leftback.setPower(leftBackPower);
             robot.rightback.setPower(rightBackPower);
-            robot.Lift.setPower(gamepad2.left_stick_y/1.030927);
+
+            if (gamepad2.right_stick_y<0){
+                robot.Lift.setPower(-0.6);
+            } else if (gamepad2.right_stick_y>0) {
+                robot.Lift.setPower(0.6);
+            } else {
+                robot.Lift.setPower(0.0);
+            }
+
+//            robot.Lift.setPower(gamepad2.left_stick_y/1.030927);
 //            if(gamepad2.y){
 //                robot.grabber.setPosition(0.0);
 //                robot.grabber2.setPosition(0.0);

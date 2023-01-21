@@ -61,7 +61,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="FoundationAutonomousRedfront", group="Pushbot")
+@Autonomous(name="NoCamRightAuto", group="Pushbot")
 //@Disabled
 public class AutoTest extends LinearOpMode {
 
@@ -106,6 +106,7 @@ public class AutoTest extends LinearOpMode {
         robot.rightfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         robot.leftback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         robot.rightback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 
@@ -129,13 +130,19 @@ public class AutoTest extends LinearOpMode {
 
         encoderDrive(DRIVE_SPEED3,-28,28,28,-28,5.0);
         //move 2 feet forward
-        encoderDrive(DRIVE_SPEED3,24,24,24,24,5.0);
+        encoderDrive(DRIVE_SPEED3,26.5,26.5,26.5,26.5,5.0);
         // turn 90 degrees left
         encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
         // move towards high junction
-        encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
+        encoderDrive(DRIVE_SPEED3,8,8,8,8,5.0);
         //put the cone on high junction that we are facing
-        Liftencoder(DRIVE_SPEED,15,5.0);
+        Liftencoder(DRIVE_SPEED,-40, 5.0);
+        robot.Lift.setPower(0.0);
+        encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
+        robot.grabber.setPosition(0.1);
+        robot.grabber2.setPosition(1.0);
+        sleep(1000);
+
         // turn 90 right
 //        encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
         //move 1 foot forward
@@ -295,10 +302,9 @@ public class AutoTest extends LinearOpMode {
             {
 
                 // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLiftTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
-                        robot.Lift.getCurrentPosition());
-                telemetry.update();
+//                telemetry.addData("Path1",  "Running to %7d :%7d", newLiftTarget);
+//                telemetry.addData("Path2",  "Running at %7d :%7d", robot.Lift.getCurrentPosition());
+//                telemetry.update();
             }
 
 
