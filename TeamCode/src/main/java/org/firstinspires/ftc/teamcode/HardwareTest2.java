@@ -67,7 +67,7 @@ public class HardwareTest2
 ////    public Servo Launcher = null;
 ////    public Servo rampservo = null;
     public Servo grabber = null;
-    public CRServo grabber2 = null;
+    public Servo grabber2 = null;
 
 
 
@@ -99,13 +99,8 @@ public class HardwareTest2
         rightfront = this.hwMap.get(DcMotor.class, "rightfront");
         rightback = this.hwMap.get(DcMotor.class, "rightback");
         Lift = this.hwMap.get(DcMotor.class, "Lift");
-////        wobblegoalarm=this.hwMap.get(DcMotor.class,"wobblegoalarm");
-////        shooterone=this.hwMap.get(DcMotor.class,"shooterone");
-////        Wheelintake=this.hwMap.get(DcMotor.class,"wheeelintake");
-////        Launcher = this.hwMap.get(Servo.class,"Launcher");
-////        rampservo = this.hwMap.get(Servo.class,"rampservo");
         grabber = this.hwMap.get(Servo.class,"grabber");
-        grabber2 = this.hwMap.get(CRServo.class,"grabber2");
+        grabber2 = this.hwMap.get(Servo.class,"grabber2");
 
 
 
@@ -124,6 +119,7 @@ public class HardwareTest2
 //        Wheelintake.setDirection(DcMotor.Direction.REVERSE);
 //        Launcher.setPosition(0.1);
         grabber.setPosition(0.2);
+        grabber2.setPosition(0.2);
 
 
 
