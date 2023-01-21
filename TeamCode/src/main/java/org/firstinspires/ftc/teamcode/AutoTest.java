@@ -102,6 +102,12 @@ public class AutoTest extends LinearOpMode {
         robot.leftback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        robot.leftfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.rightfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.leftback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.rightback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
 
 
         // Send telemetry message to indicate successful Encoder reset
@@ -114,41 +120,56 @@ public class AutoTest extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
-        // Step through each leg of the path,
+// Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED3,10,10,10,10,5.0);
-        sleep(8000);
-        encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
-        sleep(8000);
+        // 12 is around 45 in turn
+        // we'll figure out timeouts afterward
+        // strafe 2 feet left
+
+
+        encoderDrive(DRIVE_SPEED3,-28,28,28,-28,5.0);
+        //move 2 feet forward
         encoderDrive(DRIVE_SPEED3,24,24,24,24,5.0);
-        sleep(8000);
-        encoderDrive(DRIVE_SPEED3,-36,-36,-36,-36,5.0);
-        sleep(8000);
-
-//        encoderDrive(DRIVE_SPEED,-30,30,30,-30,5.0);
-//        encoderDrive(DRIVE_SPEED3,5,5,5,5,5.0);
-//        encoderDrive(DRIVE_SPEED,-45,-45,-45,-45,5.0);
-//
-//        sleep(8000);
-//        encoderDrive(DRIVE_SPEED2,52,52,52,52,10.0);
-//
-//        sleep(1000);
-//        encoderDrive(DRIVE_SPEED4,98,-98,-98,98,10.0);
-//        encoderDrive(DRIVE_SPEED3,15,15,15,15,5.0);
-//        encoderDrive(DRIVE_SPEED,-27,-27,-27,-27,5.0);
-        // hello
-
-
-
-
-
-
-
-
+        // turn 90 degrees left
+        encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+        // move towards high junction
+        encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
+        //put the cone on high junction that we are facing
+        Liftencoder(DRIVE_SPEED,15,5.0);
+        // turn 90 right
+//        encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
+        //move 1 foot forward
+        //encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
+        //turn 90 right
+       // encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+        // move roughly 4.5 feet (until we are in range to grab from the stack)
+        //encoderDrive(DRIVE_SPEED3,54,54,54,54,5.0);
+        // for 2 times{
+        //for (counter =0; counter<=2; ) {
+            // grab cone
+            // turn 180
+            // move forward 3 feet
+            //encoderDrive(DRIVE_SPEED3,36,36,36,36,5.0);
+            //turn 90 right
+            // put cone
+            // turn 90 back
+            // move forward 3 feet
+            //encoderDrive(DRIVE_SPEED3,36,36,36,36,5.0);
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
      *  Method to perfmorm a relative move, based on encoder counts.
@@ -238,5 +259,65 @@ public class AutoTest extends LinearOpMode {
         }
 
     }
+    public void Liftencoder(double speed, double Liftinches, double timeoutS) {
+        int newLiftTarget;
+
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+
+            // Determine new target position, and pass to motor controller
+            newLiftTarget = robot.Lift.getCurrentPosition() + (int)(Liftinches * COUNTS_PER_INCH);
+
+            robot.Lift.setTargetPosition(newLiftTarget);
+
+
+            // Turn On RUN_TO_POSITION
+            robot.Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            robot.Lift.setPower(Math.abs(speed));
+
+
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop.  This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+            while (opModeIsActive() &&
+                    (runtime.seconds() < timeoutS) &&
+                    (robot.Lift.isBusy()))
+
+            {
+
+                // Display it for the driver.
+                telemetry.addData("Path1",  "Running to %7d :%7d", newLiftTarget);
+                telemetry.addData("Path2",  "Running at %7d :%7d",
+                        robot.Lift.getCurrentPosition());
+                telemetry.update();
+            }
+
+
+
+            // Stop all motion;
+            robot.Lift.setPower(0);
+
+
+
+            // Turn off RUN_TO_POSITION
+            robot.Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+
+            //  sleep(250);   // optional pause after each move
+            //hello
+        }
+
+    }
+
 
 }
