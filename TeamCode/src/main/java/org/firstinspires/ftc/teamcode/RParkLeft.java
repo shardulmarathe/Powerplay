@@ -61,9 +61,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="NoCamRightAuto", group="Pushbot")
+@Autonomous(name="RParkLeft", group="Pushbot")
 //@Disabled
-public class AutoTest extends LinearOpMode {
+public class RParkLeft extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareTest2         robot   = new HardwareTest2();   // Use a Pushbot's hardware
@@ -76,7 +76,7 @@ public class AutoTest extends LinearOpMode {
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.5;
     static final double     DRIVE_SPEED2            = 0.45;
-    static final double     DRIVE_SPEED3            = 0.2;
+    static final double     DRIVE_SPEED3            = 0.3;
     static final double     DRIVE_SPEED4            = 0.75;
 
     @Override
@@ -128,40 +128,10 @@ public class AutoTest extends LinearOpMode {
         // strafe 2 feet left
 
 
-        encoderDrive(DRIVE_SPEED3,-28,28,28,-28,5.0);
-        //move 2 feet forward
-        encoderDrive(DRIVE_SPEED3,26.5,26.5,26.5,26.5,5.0);
-        // turn 90 degrees left
-        encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
-        // move towards high junction
-        encoderDrive(DRIVE_SPEED3,8,8,8,8,5.0);
-        //put the cone on high junction that we are facing
-        Liftencoder(DRIVE_SPEED,-40, 5.0);
-        robot.Lift.setPower(0.0);
-        encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
-        robot.grabber.setPosition(0.1);
-        robot.grabber2.setPosition(1.0);
-        sleep(1000);
+        encoderDrive(DRIVE_SPEED,-15,15,15,-15,5.0);
 
-        // turn 90 right
-//        encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
         //move 1 foot forward
-        //encoderDrive(DRIVE_SPEED3,12,12,12,12,5.0);
-        //turn 90 right
-       // encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
-        // move roughly 4.5 feet (until we are in range to grab from the stack)
-        //encoderDrive(DRIVE_SPEED3,54,54,54,54,5.0);
-        // for 2 times{
-        //for (counter =0; counter<=2; ) {
-            // grab cone
-            // turn 180
-            // move forward 3 feet
-            //encoderDrive(DRIVE_SPEED3,36,36,36,36,5.0);
-            //turn 90 right
-            // put cone
-            // turn 90 back
-            // move forward 3 feet
-            //encoderDrive(DRIVE_SPEED3,36,36,36,36,5.0);
+
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }

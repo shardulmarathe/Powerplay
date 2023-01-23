@@ -140,9 +140,7 @@ public class HardwareTest2
         leftback.setPower(0.0);
         rightback.setPower(0.0);
         Lift.setPower(0.0);
-//        wobblegoalarm.setPower(0.0);
-//        shooterone.setPower(0.0);
-//        Wheelintake.setPower(0.0);
+
 
 
         // Set all motors to run without encoders.
