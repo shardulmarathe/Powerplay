@@ -127,11 +127,11 @@ public class MultiConeRight extends LinearOpMode {
         // we'll figure out timeouts afterward
         // strafe 2 feet left
 
-
+// strafe to the opening
         encoderDrive(DRIVE_SPEED,-28,28,28,-28,5.0);
         //move 2 feet forward
         encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
-        // turn 90 degrees left
+        // turn left
         encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
         // move towards high junction
         encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
@@ -144,11 +144,11 @@ public class MultiConeRight extends LinearOpMode {
         encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
         robot.Lift.setPower(0.0);
 
-
+// move back
         encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-        // turn 90 right
+        // turn right
         encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
-        //move 1 foot forward
+        //move 2 feet forward
         encoderDrive(DRIVE_SPEED3,24,24,24,24,5.0);
         //turn 90 right
         encoderDrive(DRIVE_SPEED3,19.5,-19.5,19.5,-19.5,5.0);
