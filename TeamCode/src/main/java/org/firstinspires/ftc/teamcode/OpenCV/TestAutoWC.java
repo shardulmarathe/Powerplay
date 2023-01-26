@@ -34,9 +34,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.HardwareTest2;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+
+import java.util.ArrayList;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -109,6 +114,25 @@ public class TestAutoWC extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+
+        camera.setPipeline(aprilTagDetectionPipeline);
+        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
+            @Override
+            public void onOpened()
+            {
+                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+            }
+
+            @Override
+            public void onError(int errorCode)
+            {
+
+            }
+        });
 
         /*
          * Initialize the drive system variables.
@@ -146,7 +170,64 @@ public class TestAutoWC extends LinearOpMode {
                 robot.leftback.getCurrentPosition(),
                 robot.rightback.getCurrentPosition());
         telemetry.update();
+        while (!isStarted() && !isStopRequested())
+        {
+            ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
 
+            if(currentDetections.size() != 0)
+            {
+                boolean tagFound = false;
+
+                for(AprilTagDetection tag : currentDetections)
+                {
+                    if(tag.id == Zone1 || tag.id == Zone2 || tag.id == Zone3)
+                    {
+                        tagOfInterest = tag;
+                        tagFound = true;
+                        break;
+                    }
+                }
+
+                if(tagFound)
+                {
+                    telemetry.addLine("Tag of interest is in sight!\n\nLocation data:");
+                    tagToTelemetry(tagOfInterest);
+                }
+                else
+                {
+                    telemetry.addLine("Don't see tag of interest :(");
+
+                    if(tagOfInterest == null)
+                    {
+                        telemetry.addLine("(The tag has never been seen)");
+                    }
+                    else
+                    {
+                        telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                        tagToTelemetry(tagOfInterest);
+                    }
+                }
+
+            }
+            else
+            {
+                telemetry.addLine("Don't see tag of interest :(");
+
+                if(tagOfInterest == null)
+                {
+                    telemetry.addLine("(The tag has never been seen)");
+                }
+                else
+                {
+                    telemetry.addLine("\nBut we HAVE seen the tag before; last seen at:");
+                    tagToTelemetry(tagOfInterest);
+                }
+
+            }
+
+            telemetry.update();
+            sleep(20);
+        }
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 // Step through each leg of the path,
@@ -155,30 +236,113 @@ public class TestAutoWC extends LinearOpMode {
         // we'll figure out timeouts afterward
         // strafe 2 feet left
 
+        if (tagOfInterest == null || tagOfInterest.id == Zone1){
+            telemetry.addLine("Zone 1 (Should be tag 13)");
+            telemetry.update();
+            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
-        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
-        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-
-        //move 2 feet forward
-        encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
-        // turn 90 degrees left
-        encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
-        // move towards high junction
-        encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
-        //put the cone on high junction that we are facing
-        Liftencoder(DRIVE_SPEED,-12, 2);
-        encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
-        Liftencoder(DRIVE_SPEED3,0.5, 1);
-        robot.grabber.setPosition(0.1);
-        robot.grabber2.setPosition(1.0);
-        encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
-        robot.Lift.setPower(0.0);
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            // turn 90 degrees left
+            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            // move towards high junction
+            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            //put the cone on high junction that we are facing
+            Liftencoder(DRIVE_SPEED,-12, 2);
+            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED3,0.5, 1);
+            robot.grabber.setPosition(0.1);
+            robot.grabber2.setPosition(1.0);
+            encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+            robot.Lift.setPower(0.0);
 
 
-        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-        // turn 90 right
-        encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
-//        encoderDrive(DRIVE_SPEED,-26.5,-26.5,-26.5,-26.5,5.0);
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+            // turn 90 right
+            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+        }
+        else if (tagOfInterest.id == Zone2){
+            telemetry.addLine("Zone 2 (Should be tag 14)");
+            telemetry.update();
+            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            // turn 90 degrees left
+            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            // move towards high junction
+            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            //put the cone on high junction that we are facing
+            Liftencoder(DRIVE_SPEED,-12, 2);
+            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED3,0.5, 1);
+            robot.grabber.setPosition(0.1);
+            robot.grabber2.setPosition(1.0);
+            encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+            robot.Lift.setPower(0.0);
+
+
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+            // turn 90 right
+            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+            encoderDrive(DRIVE_SPEED3,-24,24,24,-24,5.0);
+
+        }
+        else if (tagOfInterest.id == Zone3){
+            telemetry.addLine("Zone 3 (Should be tag 15)");
+            telemetry.update();
+                    //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            // turn 90 degrees left
+            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            // move towards high junction
+            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            //put the cone on high junction that we are facing
+            Liftencoder(DRIVE_SPEED,-12, 2);
+            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED3,0.5, 1);
+            robot.grabber.setPosition(0.1);
+            robot.grabber2.setPosition(1.0);
+            encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+            robot.Lift.setPower(0.0);
+
+
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+            // turn 90 right
+            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+            encoderDrive(DRIVE_SPEED3,-48,48,48,-48,5.0);
+
+        }
+        sleep(10000);
+//        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
+//        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+//
+//        //move 2 feet forward
+//        encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+//        // turn 90 degrees left
+//        encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+//        // move towards high junction
+//        encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+//        //put the cone on high junction that we are facing
+//        Liftencoder(DRIVE_SPEED,-12, 2);
+//        encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+//        Liftencoder(DRIVE_SPEED3,0.5, 1);
+//        robot.grabber.setPosition(0.1);
+//        robot.grabber2.setPosition(1.0);
+//        encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+//        robot.Lift.setPower(0.0);
+//
+//
+//        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+//        // turn 90 right
+//        encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+////        encoderDrive(DRIVE_SPEED,-26.5,-26.5,-26.5,-26.5,5.0);
 //        encoderDrive(DRIVE_SPEED3,3,3,3,3,5.0);
 //
 //        encoderDrive(DRIVE_SPEED,-45,45,45,-45,5.0);
@@ -347,6 +511,16 @@ public class TestAutoWC extends LinearOpMode {
             //hello
         }
 
+    }
+    void tagToTelemetry(AprilTagDetection detection)
+    {
+        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
+        telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
+        telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
+        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
+        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
+        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
 
 
