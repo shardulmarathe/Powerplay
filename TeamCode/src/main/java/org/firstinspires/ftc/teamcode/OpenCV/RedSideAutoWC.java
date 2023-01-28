@@ -69,7 +69,7 @@ import java.util.ArrayList;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="RedSideParkWC", group="Pushbot")
+@Autonomous(name="LeftWC", group="Pushbot")
 //@Disabled
 public class RedSideAutoWC extends LinearOpMode {
 
@@ -235,7 +235,7 @@ public class RedSideAutoWC extends LinearOpMode {
         // we'll figure out timeouts afterward
         // strafe 2 feet left
 
-        if (tagOfInterest == null || tagOfInterest.id == Zone1){
+        if (tagOfInterest.id == Zone1){
             telemetry.addLine("Zone 1 (Should be tag 13)");
             telemetry.update();
             telemetry.addLine("Zone 3 (Should be tag 15)");
@@ -292,7 +292,7 @@ public class RedSideAutoWC extends LinearOpMode {
             // turn 90 right
             encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
             encoderDrive(DRIVE_SPEED3,-21.5,21.5,-21.5,21.5,5.0);
-            encoderDrive(DRIVE_SPEED3,18,18,18,18,5.0);
+            encoderDrive(DRIVE_SPEED3,20,20,20,20,5.0);
         }
         else if (tagOfInterest.id == Zone3){
             //here
