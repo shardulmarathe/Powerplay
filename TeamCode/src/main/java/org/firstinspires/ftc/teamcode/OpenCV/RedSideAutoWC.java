@@ -238,6 +238,9 @@ public class RedSideAutoWC extends LinearOpMode {
         if (tagOfInterest == null || tagOfInterest.id == Zone1){
             telemetry.addLine("Zone 1 (Should be tag 13)");
             telemetry.update();
+            telemetry.addLine("Zone 3 (Should be tag 15)");
+            telemetry.update();
+            //move 2 feet forward
             encoderDrive(DRIVE_SPEED,27.5,-27.5,-27.5,27.5,5.0);
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
@@ -260,6 +263,8 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
             encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
+            encoderDrive(DRIVE_SPEED3,-21.5,21.5,-21.5,21.5,5.0);
+            encoderDrive(DRIVE_SPEED3,45,45,45,45,5.0);
         }
         else if (tagOfInterest.id == Zone2){
             telemetry.addLine("Zone 2 (Should be tag 14)");
@@ -290,9 +295,7 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,18,18,18,18,5.0);
         }
         else if (tagOfInterest.id == Zone3){
-            telemetry.addLine("Zone 3 (Should be tag 15)");
-            telemetry.update();
-                    //move 2 feet forward
+            //here
             encoderDrive(DRIVE_SPEED,27.5,-27.5,-27.5,27.5,5.0);
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
@@ -315,8 +318,6 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
             encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
-            encoderDrive(DRIVE_SPEED3,-21.5,21.5,-21.5,21.5,5.0);
-            encoderDrive(DRIVE_SPEED3,45,45,45,45,5.0);
         }
         sleep(10000);
 //        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);

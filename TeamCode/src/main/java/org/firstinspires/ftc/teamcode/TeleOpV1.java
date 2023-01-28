@@ -137,17 +137,18 @@ public class TeleOpV1 extends LinearOpMode {
             */
 
             // Send calculated power to wheels
+            if (gamepad1.left_bumper){
+                robot.leftfront.setPower(leftFrontPower*0.25);
+                robot.rightfront.setPower(rightFrontPower*0.25);
+                robot.leftback.setPower(leftBackPower*0.25);
+                robot.rightback.setPower(rightBackPower*0.25);
+            }
             robot.leftfront.setPower(leftFrontPower);
             robot.rightfront.setPower(rightFrontPower);
             robot.leftback.setPower(leftBackPower);
             robot.rightback.setPower(rightBackPower);
 
-            if (gamepad1.left_bumper){
-                robot.leftfront.setPower(leftFrontPower/5);
-                robot.rightfront.setPower(rightFrontPower/5);
-                robot.leftback.setPower(leftBackPower/5);
-                robot.rightback.setPower(rightBackPower/5);
-            }
+
 
             if (gamepad2.right_stick_y<0){
                 robot.Lift.setPower(-0.6);
