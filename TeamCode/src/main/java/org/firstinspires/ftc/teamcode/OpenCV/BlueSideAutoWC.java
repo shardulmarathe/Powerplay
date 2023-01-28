@@ -35,7 +35,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.HardwareTest2;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -70,9 +69,10 @@ import java.util.ArrayList;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Test", group="Pushbot")
+@Autonomous(name="BlueSideParkWC", group="Pushbot")
+
 //@Disabled
-public class TestAutoWC extends LinearOpMode {
+public class BlueSideAutoWC extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareWCamera robot   = new HardwareWCamera();   // Use a Pushbot's hardware
@@ -239,18 +239,16 @@ public class TestAutoWC extends LinearOpMode {
         if (tagOfInterest == null || tagOfInterest.id == Zone1){
             telemetry.addLine("Zone 1 (Should be tag 13)");
             telemetry.update();
-            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
-            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-
+            encoderDrive(DRIVE_SPEED,-30,30,30,-30,5.0);
             //move 2 feet forward
             encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            encoderDrive(DRIVE_SPEED3,-12.5,12.5,-12.5,12.5,5.0);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
-            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED,-14, 2);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -260,23 +258,21 @@ public class TestAutoWC extends LinearOpMode {
 
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
-            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
+            encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
         }
         else if (tagOfInterest.id == Zone2){
             telemetry.addLine("Zone 2 (Should be tag 14)");
             telemetry.update();
-            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
-            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-
+            encoderDrive(DRIVE_SPEED,-28,28,28,-28,5.0);
             //move 2 feet forward
             encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            encoderDrive(DRIVE_SPEED3,-12.5,12.5,-12.5,12.5,5.0);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
-            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED,-14, 2);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -284,28 +280,27 @@ public class TestAutoWC extends LinearOpMode {
             robot.Lift.setPower(0.0);
 
 
+
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
-            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
-            encoderDrive(DRIVE_SPEED3,-24,24,24,-24,5.0);
-
+            encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
+            encoderDrive(DRIVE_SPEED3,21.5,-21.5,21.5,-21.5,5.0);
+            encoderDrive(DRIVE_SPEED3,18,18,18,18,5.0);
         }
         else if (tagOfInterest.id == Zone3){
             telemetry.addLine("Zone 3 (Should be tag 15)");
             telemetry.update();
-                    //move 2 feet forward
-            encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
-            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
-
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,-30,30,30,-30,5.0);
             //move 2 feet forward
             encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,11.5,-11.5,11.5,-11.5,5.0);
+            encoderDrive(DRIVE_SPEED3,-12.5,12.5,-12.5,12.5,5.0);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
-            encoderDrive(DRIVE_SPEED3,2.5,2.5,2.5,2.,5.0);
+            Liftencoder(DRIVE_SPEED,-14, 2);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -313,11 +308,12 @@ public class TestAutoWC extends LinearOpMode {
             robot.Lift.setPower(0.0);
 
 
+
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
-            encoderDrive(DRIVE_SPEED3,-12,12,-12,12,5.0);
-            encoderDrive(DRIVE_SPEED3,-48,48,48,-48,5.0);
-
+            encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
+            encoderDrive(DRIVE_SPEED3,21.5,-21.5,21.5,-21.5,5.0);
+            encoderDrive(DRIVE_SPEED3,45,45,45,45,5.0);
         }
         sleep(10000);
 //        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
