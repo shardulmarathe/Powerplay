@@ -151,11 +151,15 @@ public class TeleOpV1 extends LinearOpMode {
 
 
             if (gamepad2.right_stick_y<0){
-                robot.Lift.setPower(-0.6);
+                robot.Lift.setPower(-1);
             } else if (gamepad2.right_stick_y>0) {
                 robot.Lift.setPower(0.6);
             } else {
                 robot.Lift.setPower(0.0);
+            }
+            if(gamepad2.dpad_up){
+                robot.Lift.setPower(-0.45);
+                sleep(600);
             }
 
 //            robot.Lift.setPower(gamepad2.left_stick_y/1.030927);
