@@ -319,7 +319,31 @@ public class RedSideAutoWC extends LinearOpMode {
             // turn 90 right
             encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
         }
-        sleep(10000);
+        else{
+            //here
+            encoderDrive(DRIVE_SPEED,27.5,-27.5,-27.5,27.5,5.0);
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            // turn 90 degrees left
+            encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
+            // move towards high junction
+            encoderDrive(DRIVE_SPEED3,6,6,6,6,5.0);
+            //put the cone on high junction that we are facing
+            Liftencoder(DRIVE_SPEED,-12, 2);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
+            Liftencoder(DRIVE_SPEED3,0.5, 1);
+            robot.grabber.setPosition(0.1);
+            robot.grabber2.setPosition(1.0);
+            encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+            robot.Lift.setPower(0.0);
+
+
+            encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
+            // turn 90 right
+            encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
+        }
 //        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
 //        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 //

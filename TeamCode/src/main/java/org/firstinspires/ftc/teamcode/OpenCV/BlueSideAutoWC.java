@@ -236,7 +236,7 @@ public class BlueSideAutoWC extends LinearOpMode {
         // we'll figure out timeouts afterward
         // strafe 2 feet left
 
-        if (tagOfInterest == null || tagOfInterest.id == Zone1){
+        if (tagOfInterest.id == Zone1){
             telemetry.addLine("Zone 1 (Should be tag 13)");
             telemetry.update();
             encoderDrive(DRIVE_SPEED,-21,21,21,-21,5.0);
@@ -322,9 +322,38 @@ public class BlueSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,11,-11,11,-11,5.0);
             encoderDrive(DRIVE_SPEED3,21,-21,21,-21,5.0);
             encoderDrive(DRIVE_SPEED4,47,47,47,47,5.0);
-            encoderDrive(DRIVE_SPEED,-5,5,5,-5,5.0);
+            encoderDrive(DRIVE_SPEED,-10,10,10,-10,5.0);
             encoderDrive(DRIVE_SPEED3,-1,-1,-1,-1,5.0);
         }
+        else{
+            telemetry.addLine("Can't detect tag");
+            telemetry.update();
+            encoderDrive(DRIVE_SPEED,-21,21,21,-21,5.0);
+            //move 2 feet forward
+            encoderDrive(DRIVE_SPEED,-2,-2,-2,-2,5.0);
+
+            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            // turn 90 degrees left
+            encoderDrive(DRIVE_SPEED3,-11.5,11.5,-11.5,11.5,5.0);
+            // move towards high junction
+            encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
+            //put the cone on high junction that we are facing
+            Liftencoder(DRIVE_SPEED,-14, 2);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
+            Liftencoder(DRIVE_SPEED3,0.5, 1);
+            robot.grabber.setPosition(0.1);
+            robot.grabber2.setPosition(1.0);
+            encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
+            robot.Lift.setPower(0.0);
+
+
+            encoderDrive(DRIVE_SPEED3,-7.5,-7.5,-7.5,-7.5,5.0);
+            // turn 90 right
+            encoderDrive(DRIVE_SPEED3,11,-11,11,-11,5.0);
+
+            encoderDrive(DRIVE_SPEED3,21.5,-21.5,21.5,-21.5,5.0);
+        }
+
 //        encoderDrive(DRIVE_SPEED,30,-30,-30,30,5.0);
 //        encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 //
