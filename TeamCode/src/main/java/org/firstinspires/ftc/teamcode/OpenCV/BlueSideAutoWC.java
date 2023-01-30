@@ -251,7 +251,7 @@ public class BlueSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
             //put the cone on high junction that we are facing
             Liftencoder(DRIVE_SPEED,-9, 2);
-            encoderDrive(DRIVE_SPEED3,1.5,1.5,1.5,1.5,5.0);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -280,7 +280,7 @@ public class BlueSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
             //put the cone on high junction that we are facing
             Liftencoder(DRIVE_SPEED,-9, 2);
-            encoderDrive(DRIVE_SPEED3,1.5,1.5,1.5,1.5,5.0);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -310,7 +310,7 @@ public class BlueSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
             //put the cone on high junction that we are facing
             Liftencoder(DRIVE_SPEED,-9, 2);
-            encoderDrive(DRIVE_SPEED3,1.5,1.5,1.5,1.5,5.0);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
@@ -342,7 +342,7 @@ public class BlueSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,7,7,7,7,5.0);
             //put the cone on high junction that we are facing
             Liftencoder(DRIVE_SPEED,-9, 2);
-            encoderDrive(DRIVE_SPEED3,1.5,1.5,1.5,1.5,5.0);
+            encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);

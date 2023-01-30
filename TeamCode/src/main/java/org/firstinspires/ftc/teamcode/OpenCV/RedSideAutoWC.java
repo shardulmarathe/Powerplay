@@ -238,20 +238,20 @@ public class RedSideAutoWC extends LinearOpMode {
         if (tagOfInterest.id == Zone1){
             telemetry.addLine("Zone 1 (Should be tag 13)");
             telemetry.update();
-            telemetry.addLine("Zone 3 (Should be tag 15)");
-            telemetry.update();
             //move 2 feet forward
             encoderDrive(DRIVE_SPEED,27.5,-27.5,-27.5,27.5,5.0);
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
             //move 2 feet forward
-            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            encoderDrive(DRIVE_SPEED,27,27,27,27,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
+            encoderDrive(DRIVE_SPEED3,11,-11,11,-11,5.0);
+            robot.Lift.setPower(-0.45);
+            sleep(600);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,6,6,6,6,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
+            Liftencoder(DRIVE_SPEED,-9, 2);
             encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
@@ -264,7 +264,9 @@ public class RedSideAutoWC extends LinearOpMode {
             // turn 90 right
             encoderDrive(DRIVE_SPEED3,-11,11,-11,11,5.0);
             encoderDrive(DRIVE_SPEED3,-21.5,21.5,-21.5,21.5,5.0);
-            encoderDrive(DRIVE_SPEED3,45,45,45,45,5.0);
+            encoderDrive(DRIVE_SPEED4,45,45,45,45,5.0);
+            encoderDrive(DRIVE_SPEED,12,-12,-12,12,5.0);
+
         }
         else if (tagOfInterest.id == Zone2){
             telemetry.addLine("Zone 2 (Should be tag 14)");
@@ -273,13 +275,15 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
             //move 2 feet forward
-            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            encoderDrive(DRIVE_SPEED,27,27,27,27,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
+            encoderDrive(DRIVE_SPEED3,11,-11,11,-11,5.0);
+            robot.Lift.setPower(-0.45);
+            sleep(600);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,6,6,6,6,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
+            Liftencoder(DRIVE_SPEED,-9, 2);
             encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
@@ -300,20 +304,21 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
             //move 2 feet forward
-            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            encoderDrive(DRIVE_SPEED,27,27,27,27,5.0);
             // turn 90 degrees left
-            encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
+            encoderDrive(DRIVE_SPEED3,11,-11,11,-11,5.0);
+            robot.Lift.setPower(-0.45);
+            sleep(600);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,6,6,6,6,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
-            Liftencoder(DRIVE_SPEED,-12, 2);
+            Liftencoder(DRIVE_SPEED,-9, 2);
             encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
             Liftencoder(DRIVE_SPEED3,0.5, 1);
             robot.grabber.setPosition(0.1);
             robot.grabber2.setPosition(1.0);
             encoderDrive(DRIVE_SPEED3,-2,-2,-2,-2,5.0);
             robot.Lift.setPower(0.0);
-
 
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
             // turn 90 right
@@ -325,11 +330,11 @@ public class RedSideAutoWC extends LinearOpMode {
             encoderDrive(DRIVE_SPEED3,-8,-8,-8,-8,5.0);
 
             //move 2 feet forward
-            encoderDrive(DRIVE_SPEED,26.5,26.5,26.5,26.5,5.0);
+            encoderDrive(DRIVE_SPEED,27,27,27,27,5.0);
             // turn 90 degrees left
             encoderDrive(DRIVE_SPEED3,12,-12,12,-12,5.0);
             // move towards high junction
-            encoderDrive(DRIVE_SPEED3,6,6,6,6,5.0);
+            encoderDrive(DRIVE_SPEED3,6.5,6.5,6.5,6.5,5.0);
             //put the cone on high junction that we are facing
             Liftencoder(DRIVE_SPEED,-12, 2);
             encoderDrive(DRIVE_SPEED3,2,2,2,2,5.0);
